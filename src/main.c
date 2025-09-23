@@ -10,6 +10,7 @@
 #include "light.h"
 #include "texture.h"
 #include "triangle.h"
+#include "upng.h"
 
 #define PI 3.141592
 
@@ -44,7 +45,7 @@ void setup()
 
     color_buffer_texture = SDL_CreateTexture(
         renderer,
-        SDL_PIXELFORMAT_ARGB8888,
+        SDL_PIXELFORMAT_RGBA32,
         SDL_TEXTUREACCESS_STREAMING,
         window_width,
         window_height
@@ -57,12 +58,14 @@ void setup()
 
     proj_matrix = mat4_make_perspective(fov, aspect, znear, zfar);    
 
-    mesh_texture = (uint32_t*)REDBRICK_TEXTURE;
-    texture_width = 64;
-    texture_height = 64;
+    // mesh_texture = (uint32_t*)REDBRICK_TEXTURE;
+    // texture_width = 64;
+    // texture_height = 64;
 
-    load_cube_mesh_data();
-    // load_obj_file_data("./assets/f22.obj");
+    // load_cube_mesh_data();
+    load_obj_file_data("./assets/cube.obj");
+
+    load_png_texture_data("./assets/cube.png");
 }
 
 void process_input()
@@ -302,6 +305,7 @@ void render()
 void free_resources()
 {
     free(color_buffer);
+    upng_free(png_texture);
     array_free(mesh.faces);
     array_free(mesh.vertices);
 }
