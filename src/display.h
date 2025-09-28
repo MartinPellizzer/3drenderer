@@ -11,6 +11,7 @@
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 extern uint32_t *color_buffer;
+extern float *z_buffer;
 extern SDL_Texture *color_buffer_texture;
 extern int window_width;
 extern int window_height;
@@ -18,6 +19,7 @@ extern int window_height;
 bool initialize_window();
 void draw_pixel(int x, int y, uint32_t color);
 void clear_color_buffer(uint32_t color);
+void clear_z_buffer();
 void draw_grid_dots(uint32_t color, int grid_size);
 void draw_grid(uint32_t color, int grid_size);
 void draw_rect_xy(int x1, int y1, int x2, int y2, uint32_t color);
